@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-  blocklist_updater:
+  adblock-blocklist_updater:
     container_name: adblock-blocklist_updater
     image: rossbannerman/adblock_blocklist_updater:latest
     networks:
@@ -11,7 +11,7 @@ services:
      - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: always
 
-  dnsmasq:
+  adblock-dnsmasq:
     container_name: adblock-dnsmasq
     image: rossbannerman/dnsmasq:2.78
     cap_add:
