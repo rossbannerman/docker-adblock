@@ -1,0 +1,36 @@
+version: '3.5'
+
+services:
+  blocklist_updater:
+    container_name: adblock-blocklist_updater
+    image: rossbannerman/adblock_blocklist_updater:latest
+    networks:
+      - adblock_net
+    volumes:
+     - adblock_blocklists:/etc/adblock/blocklists
+     - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: always
+
+  dnsmasq:
+    container_name: adblock-dnsmasq
+    image: rossbannerman/dnsmasq:2.78
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - adblock_net
+    ports:
+      - 53:53
+      - 53:53/udp
+    volumes:
+     - adblock_blocklists:/etc/adblock/blocklists
+     - ${PWD}/conf/resolv.conf:/etc/resolv.conf
+     - ${PWD}/conf/dnsmasq.conf:/etc/dnsmasq.conf
+    restart: always
+
+volumes:
+  adblock_blocklists:
+    name: adblock_blocklists
+
+networks:
+  adblock_net:
+    name: adblock_net
