@@ -23,7 +23,7 @@ services:
       - 53:53/udp
     volumes:
      - adblock_blocklists:/etc/adblock/blocklists
-     - ${PWD}/conf/resolv.conf:/etc/resolv.conf
+     - ${PWD}/conf/upstream.conf:/etc/adblock/upstream.conf
      - ${PWD}/conf/dnsmasq.conf:/etc/dnsmasq.conf
     restart: always
 
