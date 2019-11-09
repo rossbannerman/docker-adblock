@@ -13,7 +13,7 @@ services:
 
   adblock-dnsmasq:
     container_name: adblock-dnsmasq
-    image: rossbannerman/dnsmasq:2.78
+    image: rossbannerman/dnsmasq:latest
     cap_add:
       - NET_ADMIN
     networks:
